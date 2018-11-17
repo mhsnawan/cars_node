@@ -84,12 +84,39 @@ carRouter.route('/editcar/:id')
                                   }
                             );
                         });
-                        
                         db.close();
                       }
                 );
             });
        // res.render('admin-edit-category.ejs');
+    });
+
+carRouter.route('/updatecar/:id')
+    .post(function(req, res){
+        var id = new ObjectID(req.params.id);
+            
+            var query ={
+                _id: id
+            }
+            console.log(query);
+            var data = {
+                make:req.body.make,
+                model:req.body.model,
+                category:req.body.category,
+                color:req.body.color,
+                description:req.body.description,
+                runners:5,
+                rating:5,
+            };
+            mongodb.connect(url,function(err,db){
+                var collection = db.collection('cars');
+                collection.updateOne(query, data, function(err, res) {
+                    if (err) throw err;
+                    
+                    db.close();
+                });
+            });
+            res.redirect('/cars');
     });
 
 
