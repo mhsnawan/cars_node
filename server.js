@@ -17,8 +17,8 @@ mongoose.connect(configDB, function(err) {
     console.log('DB connected succesfully');
 });
 
-//var publicRouter = require('./src/routes/publicroutes');
-//app.use('/', publicRouter);
+var publicRouter = require('./src/routes/publicroutes');
+app.use('/', publicRouter);
 
 
 
