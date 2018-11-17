@@ -6,7 +6,7 @@
 	<link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicon.png">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-	<title>Paper Dashboard by Creative Tim</title>
+	<title>GPE Car Information</title>
 
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
@@ -42,20 +42,20 @@
 
     	<div class="sidebar-wrapper">
             <div class="logo">
-                <a href="http://www.creative-tim.com" class="simple-text">
-                    Creative Tim
+                <a href="" class="simple-text">
+                    GPE Car Information
                 </a>
             </div>
 
             <ul class="nav">
                 <li>
-                    <a href="categories.html">
+                    <a href="/categories">
                         <i class="ti-panel"></i>
                         <p>Categories</p>
                     </a>
                 </li>
                 <li>
-                    <a href="cars.html">
+                    <a href="/cars">
                         <i class="ti-car"></i>
                         <p>Cars</p>
                     </a>
@@ -105,49 +105,27 @@
                             <div class="content table-responsive table-full-width">
                                 <table class="table table-striped">
                                     <thead>
-                                        <th>Category ID</th>
+                                        <th></th>
                                         <th>Category Name</th>
                                         <th>Actions</th>
                                     </thead>
                                     <tbody>
+                                        <%for(var i = 0 ; i < category.length; i++){ %>
                                         <tr>
-                                        	<td>1</td>
-                                        	<td>Toyota</td>
-                                        	<td>$36,738</td>
+                                        	<td><%= category[i]._id %></td>
+                                        	<td><%= category[i].name %></td>
+                                        	<td>
+                                                <div class="action-buttons">
+                                                    <a href="editcategory/<%= category[i]._id %>" class="editrecipe"><span class="glyphicon glyphicon-pencil"></span></a>
+                                                    <a href="deletecategory/<%= category[i]._id %>" class="delete" class="trash"><span class="glyphicon glyphicon-trash"></span></a>
+                                                </div>
+                                            </td>
                                         </tr>
-                                        <tr>
-                                        	<td>2</td>
-                                        	<td>Ford</td>
-                                        	<td>$23,789</td>
-                                        </tr>
-                                        <tr>
-                                        	<td>3</td>
-                                        	<td>Hyndai</td>
-                                        	<td>$56,142</td>
-                                        </tr>
-                                        <tr>
-                                        	<td>4</td>
-                                        	<td>Honda</td>
-                                        	<td>$38,735</td>
-                                        </tr>
-                                        <tr>
-                                        	<td>5</td>
-                                        	<td>Mercedes</td>
-                                        	<td>$63,542</td>
-                                        </tr>
-                                        <tr>
-                                        	<td>6</td>
-                                        	<td>Porshe</td>
-                                        	<td>$78,615</td>
-                                        </tr>
-                                    </tbody>
+                                        <% } %>                           
                                 </table>
-
                             </div>
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </div>
