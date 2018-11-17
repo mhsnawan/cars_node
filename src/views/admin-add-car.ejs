@@ -102,7 +102,7 @@
                                         <h4 class="title">Add Car Detail</h4>
                                     </div>
                                     <div class="content">
-                                        <form>
+                                        <form method="POST" action="addcar">
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
@@ -123,9 +123,9 @@
                                                     <div class="form-group">
                                                         <label>Category</label>
                                                         <select class="form-control border-input" name="category" placeholder="Company">
-                                                            <option value="">Car</option>
-                                                            <option value="">Taxi</option>
-                                                            <option value="">7 Seater Taxi</option>
+                                                            <%for(var i = 0 ; i < category.length; i++){ %>
+                                                            <option value=""><%= category[i].name %></option>
+                                                            <% } %> 
                                                         </select>
                                                     </div>
                                                 </div>

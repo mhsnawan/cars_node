@@ -1,10 +1,11 @@
 var mongoose = require('mongoose');
 
 var carsSchema = mongoose.Schema({
-        name:String,
+        make:String,
         model:String,
         category:String,
         description:String,
+        color:String,
         runners:Number,
         rating:Number,
 });

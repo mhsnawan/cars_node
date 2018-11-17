@@ -112,7 +112,7 @@
                             <div class="content table-responsive table-full-width">
                                 <table class="table table-striped">
                                     <thead>
-                                        <th>Car ID</th>
+
                                         <th>Make</th>
                                         <th>Model</th>
                                         <th>Category</th>
@@ -122,14 +122,14 @@
                                         <th>Action</th>
                                     </thead>
                                     <tbody>
+                                        <%for(var i = 0 ; i < cars.length; i++){ %>
                                         <tr>
-                                        	<td>1</td>
-                                            <td>Toyota</td>
-                                            <td>Camry 2016</td>
-                                            <td>Car</td>
-                                            <td>Black</td>
-                                            <td>5</td>
-                                            <td>5</td>
+                                            <td><%= cars[i].make %></td>
+                                            <td><%= cars[i].model %></td>
+                                            <td><%= cars[i].category %></td>
+                                            <td><%= cars[i].color %></td>
+                                            <td><%= cars[i].runner %></td>
+                                            <td><%= cars[i].rating %></td>
                                             <td class="td-actions">
                                                 <div class="row">
                                                   <form method="GET" action="">
@@ -145,29 +145,7 @@
                                                 </div>
                                             </td>
                                         </tr>
-                                        <tr>
-                                        	<td>1</td>
-                                            <td>Toyota</td>
-                                            <td>Camry 2016</td>
-                                            <td>Car</td>
-                                            <td>Black</td>
-                                            <td>5</td>
-                                            <td>5</td>
-                                            <td class="td-actions">
-                                                <div class="row">
-                                                    <form method="GET" action="">
-                                                        <button class="btn btn-primary btn-link btn-sm" type="submit" rel="tooltip" title="Edit Car">
-                                                            <i class="ti-pencil"></i>
-                                                        </button>
-                                                    </form>
-                                                    <form method="post" action="">
-                                                        <button type="submit" rel="tooltip" title="Delete Car" class="btn btn-danger btn-link btn-sm">
-                                                        <i class="ti-trash"></i>
-                                                        </button>
-                                                    </form>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                        <% } %> 
                                     </tbody>
                                 </table>
 

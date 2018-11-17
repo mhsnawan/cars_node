@@ -4,30 +4,64 @@ var ObjectID = require('mongodb').ObjectID;
 var express = require('express');
 var carRouter = express.Router();
 
+//////////////////////////////////////////// CAR ROUTES ////////////////////////////////////////
 carRouter.route('/cars')
     .get(function(req, res){
-        res.render('admin-cars.ejs');
+        mongodb.connect(url,function(err,db){
+            var collection = db.collection('cars');
+            
+            collection.find({}).toArray(
+                function(err, results){
+                    if (err) throw err;
+                    res.render('admin-cars.ejs',{cars:results});
+                    db.close();
+                  }
+            );
+        });
     });
 
 carRouter.route('/addcar')
     .get(function(req, res){
-        res.render('admin-add-car.ejs');
+        mongodb.connect(url,function(err,db){
+            var collection = db.collection('categories');
+            collection.find({}).toArray(
+                function(err, results){
+                    if (err) throw err;
+                    res.render('admin-add-car.ejs',{category:results});
+                    db.close();
+                  }
+            );
+        });
     });
 
-carRouter.route('/detallecarro')
-    .get(function(req, res){
-        res.render('detallecarro.ejs');
+carRouter.route('/addcar')
+    .post(function(req, res){
+        var data= {
+            make: req.body.make,
+            model: req.body.model,
+            category: req.body.category,
+            color: req.body.color,
+            description: req.body.description,
+            runner: 5,
+            rating: 5
+        };
+        mongodb.connect(url, function(err, db){
+            if(err)
+                console.log('Error in connecting with db');
+            else{
+            var collection = db.collection('cars');
+            collection.insert(data, function(err, results){
+                if(err)
+                    throw err;
+                else
+                res.redirect('/cars');
+            });
+            db.close();
+            }
+        })
     });
 
-carRouter.route('/contacto')
-    .get(function(req, res){
-        res.render('contacto.ejs');
-    });
 
-carRouter.route('/carros')
-    .get(function(req, res){
-        res.render('carros.ejs');
-    });
 
 ///////////////////////////////////////   CATEGORY ROUTES  ////////////////////////////////
 
@@ -124,5 +158,13 @@ carRouter.route('/deletecategory/:id')
                     console.log('deleted');
                 });
             });
-    })
+    });
+
+
+
+
+
+
+
+
 module.exports = carRouter;
