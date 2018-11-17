@@ -61,6 +61,36 @@ carRouter.route('/addcar')
         })
     });
 
+carRouter.route('/editcar/:id')
+    .get(function(req, res){
+        var id = new ObjectID(req.params.id);
+            
+            var query ={
+                _id: id
+            }
+            mongodb.connect(url,function(err,db){
+                var collection = db.collection('cars');
+                collection.find({_id:id}).toArray(
+                    function(err, results){
+                        if (err) throw err;
+                        mongodb.connect(url,function(err,db){
+                            var collection = db.collection('categories');
+                            
+                            collection.find({}).toArray(
+                                function(err, results2){
+                                    if (err) throw err;
+                                    res.render('admin-edit-car.ejs',{cars:results, category: results2});
+                                    db.close();
+                                  }
+                            );
+                        });
+                        
+                        db.close();
+                      }
+                );
+            });
+       // res.render('admin-edit-category.ejs');
+    });
 
 
 ///////////////////////////////////////   CATEGORY ROUTES  ////////////////////////////////
