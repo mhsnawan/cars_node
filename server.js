@@ -20,6 +20,9 @@ mongoose.connect(configDB, function(err) {
 var publicRouter = require('./src/routes/publicroutes');
 app.use('/', publicRouter);
 
+var carRouter = require('./src/routes/adminRoutes');
+app.use('/', carRouter);
+
 
 
 app.listen(port, function(){
