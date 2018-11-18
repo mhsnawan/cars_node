@@ -40,6 +40,7 @@ carRouter.route('/addcar')
             model: req.body.model,
             category: req.body.category,
             color: req.body.color,
+            image: req.body.image,
             description: req.body.description,
             runner: 5,
             rating: 5
@@ -104,6 +105,7 @@ carRouter.route('/updatecar/:id')
                 model:req.body.model,
                 category:req.body.category,
                 color:req.body.color,
+                image:req.body.image,
                 description:req.body.description,
                 runners:5,
                 rating:5,
