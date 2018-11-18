@@ -1,4 +1,6 @@
-//var mongodb = require('mongodb').MongoClient;
+var mongodb = require('mongodb').MongoClient;
+var url = require('../config/mongodb');
+var ObjectID = require('mongodb').ObjectID;
 var express = require('express');
 var publicRouter = express.Router();
 
@@ -24,7 +26,28 @@ publicRouter.route('/contacto')
 
 publicRouter.route('/carros')
     .get(function(req, res){
-        res.render('carros.ejs');
+        mongodb.connect(url,function(err,db){
+            var collection = db.collection('categories');
+            
+            collection.find({}).toArray(
+                function(err, results){
+                    if (err) throw err;
+                    mongodb.connect(url,function(err,db){
+                        var collection = db.collection('cars');
+                        
+                        collection.find({}).toArray(
+                            function(err, results2){
+                                if (err) throw err;
+                                res.render('carros.ejs',{category:results, cars:results2});
+                                db.close();
+                              }
+                        );
+                    });
+                    //res.render('carros.ejs',{category:results});
+                    db.close();
+                  }
+            );
+        });
     });
 
 
