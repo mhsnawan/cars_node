@@ -229,15 +229,8 @@ carRouter.route('/deletecategory/:id')
                     console.log('deleted');
                 });
             });
+            res.redirect('/categories')
     });
-
-
-
-
-
-
-
-
 
 
 module.exports = carRouter;
