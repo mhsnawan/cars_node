@@ -119,6 +119,19 @@ carRouter.route('/updatecar/:id')
             res.redirect('/cars');
     });
 
+carRouter.route('/deletecar/:id')
+    .delete(function(req, res){
+        var id = new ObjectID(req.body.id);
+            mongodb.connect(url,function(err,db){
+                var collection = db.collection('cars');
+                collection.deleteOne({_id:id},function(err,results){
+                    if(err) throw err; 
+                    
+                });
+            });
+            res.redirect('/cars')
+    });
+
 
 ///////////////////////////////////////   CATEGORY ROUTES  ////////////////////////////////
 
@@ -184,8 +197,8 @@ carRouter.route('/editcategory/:id')
        // res.render('admin-edit-category.ejs');
     });
 
-carRouter.route('/editcategory/:id')
-    .put(function(req, res){
+carRouter.route('/updatecategory/:id')
+    .post(function(req, res){
         var id = new ObjectID(req.params.id);
             
             var query ={
@@ -203,6 +216,7 @@ carRouter.route('/editcategory/:id')
                     db.close();
                 });
             });
+            res.redirect('../categories')
     });
 
 carRouter.route('/deletecategory/:id')
@@ -216,6 +230,8 @@ carRouter.route('/deletecategory/:id')
                 });
             });
     });
+
+
 
 
 
