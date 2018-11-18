@@ -220,16 +220,16 @@ carRouter.route('/updatecategory/:id')
     });
 
 carRouter.route('/deletecategory/:id')
-    .get(function(req, res){
-        var id = new ObjectID(req.body.id);
+    .post(function(req, res){
+        var id = new ObjectID(req.params.id);
             mongodb.connect(url,function(err,db){
                 var collection = db.collection('categories');
                 collection.deleteOne({_id:id},function(err,results){
                     if(err) throw err; 
-                    console.log('deleted');
+                    
                 });
             });
-            res.redirect('/categories')
+            res.redirect('/categories');
     });
 
 
