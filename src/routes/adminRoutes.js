@@ -19,7 +19,6 @@ carRouter.route('/cars')
             );
         });
     });
-
 carRouter.route('/addcar')
     .get(function(req, res){
         mongodb.connect(url,function(err,db){
@@ -72,6 +71,7 @@ carRouter.route('/editcar/:id')
                 var collection = db.collection('cars');
                 collection.find({_id:id}).toArray(
                     function(err, results){
+                        console.log(results);
                         if (err) throw err;
                         mongodb.connect(url,function(err,db){
                             var collection = db.collection('categories');
@@ -120,8 +120,8 @@ carRouter.route('/updatecar/:id')
     });
 
 carRouter.route('/deletecar/:id')
-    .delete(function(req, res){
-        var id = new ObjectID(req.body.id);
+    .post(function(req, res){
+        var id = new ObjectID(req.params.id);
             mongodb.connect(url,function(err,db){
                 var collection = db.collection('cars');
                 collection.deleteOne({_id:id},function(err,results){

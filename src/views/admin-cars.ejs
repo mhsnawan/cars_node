@@ -128,7 +128,7 @@
                                             <td><%= cars[i].model %></td>
                                             <td><%= cars[i].category %></td>
                                             <td><%= cars[i].color %></td>
-                                            <td><%= cars[i].runner %></td>
+                                            <td><%= cars[i].runners %></td>
                                             <td><%= cars[i].rating %></td>
                                             <td class="td-actions">
                                                 <div class="row">
@@ -137,7 +137,7 @@
                                                         <i class="ti-pencil"></i>
                                                     </button>
                                                   </form>
-                                                  <form method="DELETE" action="deletecar/<%= cars[i]._id %>">
+                                                  <form method="post" action="/deletecar/<%= cars[i]._id %>">
                                                     <button type="submit" rel="tooltip" title="Delete Car" class="btn btn-danger btn-link btn-sm">
                                                     <i class="ti-trash"></i>
                                                     </button>
