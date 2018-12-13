@@ -9,7 +9,4 @@ var carsSchema = mongoose.Schema({
         runners:Number,
         rating:Number,
 });
-
-
-
-module.exports = mongoose.model('User', carsSchema);
+module.exports = mongoose.model('Cars', carsSchema);

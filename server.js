@@ -18,8 +18,9 @@ mongoose.connect(configDB, function(err) {
 });
 
 var publicRouter = require('./src/routes/publicroutes');
+var apiRouter = require('./api/routes/index');
 app.use('/', publicRouter);
-
+app.use('/api',apiRouter);
 var carRouter = require('./src/routes/adminRoutes');
 app.use('/', carRouter);
 
